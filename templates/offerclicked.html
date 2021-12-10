@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+        let x = localStorage.getItem("camp_offer");
+        let z = localStorage.getItem("unique_click_id");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/offerclicked", true);
+        xhr.setRequestHeader('Content-Type', 'text');
+        xhr.send(z);
+        location.href = x + z
+        </script>
+    <h1> hi</h1>
+</body>
+</html>

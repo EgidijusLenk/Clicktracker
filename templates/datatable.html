@@ -1,0 +1,124 @@
+{% extends "datatables_layout.html" %}
+<!-- Main content -->
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <!-- /.card-header -->
+            <div id="wrapper1"class="card-body">
+              <table id="data" class="table table-bordered table-striped display nowrap" >
+                <thead>
+                  <tr>
+                    <th>Campaign</th>
+                    <th>Campaign link</th>
+                    <th>Clicks</th>
+                    <th>Offer clicks</th>
+                    <th>Cost</th>
+                    <th>Conversions</th>
+                    <th>Revenue</th>
+                    <th>CTR</th>
+                    <th>Profit</th>
+                    <th>CR</th>
+                    <th>ROI</th>
+                    <th>EPV</th>
+                    <th>PPC</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Campaign</th>
+                    <th>Campaign link</th>
+                    <th>Clicks</th>
+                    <th>Offer clicks</th>
+                    <th>Cost</th>
+                    <th>Conversions</th>
+                    <th>Revenue</th>
+                    <th>CTR</th>
+                    <th>Profit</th>
+                    <th>CR</th>
+                    <th>ROI</th>
+                    <th>EPV</th>
+                    <th>PPC</th>
+                    
+                  </tr>
+               
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+{% endblock %}
+{% block scripts %}  
+  <script>
+    $(document).ready(function () {
+      $("#data").DataTable({
+        ajax: '/api/campaign',
+        columns: [
+          {data: "camp_name"},
+          {data: 'camp_link', searchable: false},
+          {data: 'lander_clicks_total', orderable: false, searchable: false},
+          {data: 'offer_clicks_total', orderable: false, searchable: false},
+          {data: 'cost', orderable: false, searchable: false},
+          {data: 'click_converted_total', orderable: false, searchable: false},
+          {data: 'revenue', orderable: false, searchable: false},
+          {data: 'ctr', orderable: false, searchable: false},
+          {data: 'profit', orderable: false, searchable: false},
+          {data: 'cr', orderable: false, searchable: false},
+          {data: 'roi', orderable: false, searchable: false},
+          {data: 'epv', orderable: false, searchable: false},
+          {data: 'ppc', orderable: false, searchable: false}
+        ],
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+        // "responsive": true, "lengthChange": false, "autoWidth": false,
+        // "buttons": ["copy", "csv", "excel", "pdf", "print"]
+      }).buttons().containers().appendTo('#wrapper1');
+      
+    });
+  </script>
+<!-- 
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable(
+        {
+        ajax: '/api/campaign',
+        columns: [
+          {data: "camp_name"},
+          {data: 'camp_link', searchable: false},
+          {data: 'lander_clicks_total', orderable: false, searchable: false},
+          {data: 'offer_clicks_total', orderable: false, searchable: false},
+          {data: 'cost', orderable: false, searchable: false},
+          {data: 'click_converted_total', orderable: false, searchable: false},
+          {data: 'revenue', orderable: false, searchable: false},
+          {data: 'ctr', orderable: false, searchable: false},
+          {data: 'profit', orderable: false, searchable: false},
+          {data: 'cr', orderable: false, searchable: false},
+          {data: 'roi', orderable: false, searchable: false},
+          {data: 'epv', orderable: false, searchable: false},
+          {data: 'ppc', orderable: false, searchable: false}
+        ],
+      }
+      );
+    });
+    
+  </script> -->
+{% endblock %}

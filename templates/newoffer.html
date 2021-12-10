@@ -1,0 +1,67 @@
+{% extends 'nav.html' %}
+{% block buttons %}
+<div class="pagetitle">
+  <h1>{{ title }}</h1>
+</div>  
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="row">
+        <div class="row">
+            <form method="POST" action="{{ url_for('newoffer') }}">
+              {{ form.csrf_token }}
+            <div class="col-lg-5">
+              <div class="card mb-2">
+                <div class="card-body ">
+            <ul class="list-unstyled p-0 m-0" block="path-0">
+              <li class="form-group bg-light rounded mb-2">
+                <div class="p-2 small text-muted">Offer name</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="offer_name" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="Offer name">
+                  </input>
+                </div>
+              </li>
+              <li class="form-group bg-light rounded mb-2">
+                <div class="p-2 small text-muted">Offer URL</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="offer_url" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="Offer URL">
+                  </input>
+                </div>
+              </li>
+              <li class="form-group bg-light rounded mb-2 mt-4">
+                <div class="p-2 small text-muted">Click parameter</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="click_param" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="sub1">
+                  </input>
+                </div>
+              </li>
+              <li class="form-group bg-light rounded mb-2 mt-4">
+                <div class="p-2 small text-muted">Affiliate network</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <select id="affiliate_network" name="affiliate_network" class="form-select form-select-sm  border border-1 border-primary rounded" placeholder="Affiliate network" >
+                    <option selected>Affiliate network</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </div>
+          </div>
+        <input class="btn btn-primary btn-sm pt-0 pb-0" id="submit" name="submit" type="submit" value="Save">
+        </div>
+    </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+{% block scripts %}
+<script>
+   const affiliate_network = {{affiliate_network | tojson}};
+  window.addEventListener("DOMContentLoaded", function()  {
+    $.each(affiliate_network, function (key, entry) {
+      $("#affiliate_network").append($('<option></option>').attr('value', entry.value).text(entry.name));
+      })
+    
+  });
+</script>
+{% endblock %}

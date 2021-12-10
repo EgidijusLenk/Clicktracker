@@ -1,0 +1,52 @@
+{% extends 'nav.html' %}
+{% block buttons %}
+<div class="pagetitle">
+  <h1>{{ title }}</h1>
+</div>  
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="row">
+        <div class="row">
+            <form method="POST" action="{{ url_for('newlander') }}">
+              {{ form.csrf_token }}
+            <div class="col-lg-5">
+              <div class="card mb-2">
+                <div class="card-body ">
+        
+          
+            <ul class="list-unstyled p-0 m-0" block="path-0">
+              <li class="form-group bg-light rounded mb-2">
+                <div class="p-2 small text-muted">Landing page name</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="lander_name" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="Landing page name">
+                  </input>
+                </div>
+              </li>
+              <li class="form-group bg-light rounded mb-2 mt-4">
+                <div class="p-2 small text-muted">Landing page URL</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="lander_url" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="Landing page URL">
+                  </input>
+                </div>
+              </li>
+        </ul>
+        
+          </div>
+          </div>
+        
+        
+        <input class="btn btn-primary btn-sm pt-0 pb-0" id="submit" name="submit" type="submit" value="Save">
+        
+        </div>
+
+
+
+
+
+    </form>
+    </div>
+</section>
+
+
+{% endblock %}

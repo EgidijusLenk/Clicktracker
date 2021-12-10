@@ -1,0 +1,207 @@
+{% extends 'nav.html' %}
+{% block buttons %}
+<div class="pagetitle">
+  <h1>{{ title }}</h1>
+</div>  
+{% endblock %}
+{% block content %}
+<section class="section">
+  <form method="POST" action="{{ url_for('newtrafficsource') }}">
+    <div class="row">
+      {{ form.csrf_token }}
+      <div class="col-lg-5">
+        <div class="card mb-2">
+          <div class="card-body ">
+            <ul class="list-unstyled p-0 m-0" block="path-0">
+              <li class="form-group bg-light rounded mb-2">
+                <div class="p-2 small text-muted">Traffic source name</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="name" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="Traffic source name">
+                  </input>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <input class="btn btn-primary btn-sm pt-0 pb-0" id="submit" name="submit" type="submit" value="Save">
+      </div>
+      <div class="col-lg-5">
+        <div class="card mb-2">
+          <div class="card-body ">
+            <ul class="list-unstyled p-0 m-0" block="path-0">
+              <div class="row">
+              <li class="form-group bg-light rounded mb-2 col-lg-6">
+                <div class="p-2 small text-muted">Cost query param</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="cost_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. cost">
+                  </input>
+                </div>
+              </li>
+              <li class="form-group bg-light rounded mb-2 col-lg-6">
+                <div class="p-2 small text-muted">Cost token</div>
+                <div class="col-sm-10 ps-1 pb-1">
+                  <input id="" name="cost_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {cost}">
+                  </input>
+                </div>
+              </li>
+            </div>
+            <div class="row">
+            <li class="form-group bg-light rounded mb-2 col-lg-6">
+              <div class="p-2 small text-muted">Custom 1 query param</div>
+              <div class="col-sm-10 ps-1 pb-1">
+                <input id="" name="custom_param1_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. source">
+                </input>
+              </div>
+            </li>
+            <li class="form-group bg-light rounded mb-2 col-lg-6">
+              <div class="p-2 small text-muted">Custom 1 token</div>
+              <div class="col-sm-10 ps-1 pb-1">
+                <input id="" name="custom_param1_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {source}">
+                </input>
+              </div>
+            </li>
+          </div>
+          <div class="row">
+          <li class="form-group bg-light rounded mb-2 col-lg-6">
+            <div class="p-2 small text-muted">Custom 2 query param</div>
+            <div class="col-sm-10 ps-1 pb-1">
+              <input id="" name="custom_param2_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. zone">
+              </input>
+            </div>
+          </li>
+          <li class="form-group bg-light rounded mb-2 col-lg-6">
+            <div class="p-2 small text-muted">Custom 2 token</div>
+            <div class="col-sm-10 ps-1 pb-1">
+              <input id="" name="custom_param2_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {zone}">
+              </input>
+            </div>
+          </li>
+        </div>
+        <div class="row">
+        <li class="form-group bg-light rounded mb-2 col-lg-6">
+          <div class="p-2 small text-muted">Custom 3 query param</div>
+          <div class="col-sm-10 ps-1 pb-1">
+            <input id="" name="custom_param3_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. bannerid">
+            </input>
+          </div>
+        </li>
+        <li class="form-group bg-light rounded mb-2 col-lg-6">
+          <div class="p-2 small text-muted">Custom 3 token</div>
+          <div class="col-sm-10 ps-1 pb-1">
+            <input id="" name="custom_param3_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {bannerid}">
+            </input>
+          </div>
+        </li>
+      </div>
+      <div class="row">
+      <li class="form-group bg-light rounded mb-2 col-lg-6">
+        <div class="p-2 small text-muted">Custom 4 query param</div>
+        <div class="col-sm-10 ps-1 pb-1">
+          <input id="" name="custom_param4_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. zone_type">
+          </input>
+        </div>
+      </li>
+      <li class="form-group bg-light rounded mb-2 col-lg-6">
+        <div class="p-2 small text-muted">Custom 4 token</div>
+        <div class="col-sm-10 ps-1 pb-1">
+          <input id="" name="custom_param4_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {zone_type}">
+          </input>
+        </div>
+      </li>
+    </div>
+    <div class="row">
+    <li class="form-group bg-light rounded mb-2 col-lg-6">
+      <div class="p-2 small text-muted">Custom 5 query param</div>
+      <div class="col-sm-10 ps-1 pb-1">
+        <input id="" name="custom_param5_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. token">
+        </input>
+      </div>
+    </li>
+    <li class="form-group bg-light rounded mb-2 col-lg-6">
+      <div class="p-2 small text-muted">Custom 5 token</div>
+      <div class="col-sm-10 ps-1 pb-1">
+        <input id="" name="custom_param5_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {token}">
+        </input>
+      </div>
+    </li>
+  </div>
+  <div class="row">
+  <li class="form-group bg-light rounded mb-2 col-lg-6">
+    <div class="p-2 small text-muted">Custom 6 query param</div>
+    <div class="col-sm-10 ps-1 pb-1">
+      <input id="" name="custom_param6_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. token">
+      </input>
+    </div>
+  </li>
+  <li class="form-group bg-light rounded mb-2 col-lg-6">
+    <div class="p-2 small text-muted">Custom 6 token</div>
+    <div class="col-sm-10 ps-1 pb-1">
+      <input id="" name="custom_param6_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {token}">
+      </input>
+    </div>
+  </li>
+</div>
+<div class="row">
+<li class="form-group bg-light rounded mb-2 col-lg-6">
+  <div class="p-2 small text-muted">Custom 7 query param</div>
+  <div class="col-sm-10 ps-1 pb-1">
+    <input id="" name="custom_param7_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. token">
+    </input>
+  </div>
+</li>
+<li class="form-group bg-light rounded mb-2 col-lg-6">
+  <div class="p-2 small text-muted">Custom 7 token</div>
+  <div class="col-sm-10 ps-1 pb-1">
+    <input id="" name="custom_param7_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {token}">
+    </input>
+  </div>
+</li>
+</div>
+<div class="row">
+<li class="form-group bg-light rounded mb-2 col-lg-6">
+  <div class="p-2 small text-muted">Custom 8 query param</div>
+  <div class="col-sm-10 ps-1 pb-1">
+    <input id="" name="custom_param8_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. token">
+    </input>
+  </div>
+</li>
+<li class="form-group bg-light rounded mb-2 col-lg-6">
+  <div class="p-2 small text-muted">Custom 8 token</div>
+  <div class="col-sm-10 ps-1 pb-1">
+    <input id="" name="custom_param8_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {token}">
+    </input>
+  </div>
+</li>
+</div>
+<div class="row">
+<li class="form-group bg-light rounded mb-2 col-lg-6">
+  <div class="p-2 small text-muted">Custom 9 query param</div>
+  <div class="col-sm-10 ps-1 pb-1">
+    <input id="" name="custom_param9_query" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. token">
+    </input>
+  </div>
+</li>
+<li class="form-group bg-light rounded mb-2 col-lg-6">
+  <div class="p-2 small text-muted">Custom 9 token</div>
+  <div class="col-sm-10 ps-1 pb-1">
+    <input id="" name="custom_param9_token" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="e.g. {token}">
+    </input>
+  </div>
+</li>
+</div>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+    </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,219 @@
+{% extends 'nav.html' %}
+{% block buttons %}
+<div class="pagetitle">
+  <h1>{{ title }}</h1>
+</div>  
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <form method="POST" action="{{ url_for('newlander') }}">
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="card mb-2">
+        <div class="card-body ">
+
+  
+    <ul class="list-unstyled p-0 m-0" block="path-0">
+      <li class="form-group bg-light rounded mb-2">
+        <div class="p-2 small text-muted">Campaign name</div>
+        <div class="col-sm-10 ps-1 pb-1">
+          <input id="" name="name" class="form-control form-control-sm  border border-1 border-primary rounded" placeholder="Campaign name">
+          </input>
+        </div>
+      </li>
+      <li class="form-group bg-light rounded mb-2 mt-4">
+        <div class="p-2 small text-muted">Traffic source</div>
+        <div class="col-sm-10 ps-1 pb-1">
+          <select id="traffic_source_select" name="traffic_source" class="form-select form-select-sm  border border-1 border-primary rounded" placeholder="Traffic source" >
+            <option selected>Traffic source</option>
+          </select>
+        </div>
+      </li>
+</ul>
+
+  </div>
+  </div>
+
+
+<input class="btn btn-primary btn-sm pt-0 pb-0" id="submit" name="submit" type="submit" value="Save">
+
+</div>
+
+  <div class="col-lg-5 pe-0 ps-0">
+    <!-- path card -->
+    <ul id="pathslist" class=" list-unstyled p-0 m-0 offers_block">
+      <li class="card mb-2">
+        <div class="card-header row justify-content-between p-0">
+          <div class="col-lg-6">
+          <input class="form-control form-control-sm border-0 border-start rounded-0 text-muted bg-light" name="path-0-name" value="Path 1">
+          </input>
+        </div>
+          <div class="col-lg-3">
+            <div class="input-group input-group-sm border-0">
+              <input type="text" class="form-control border-0 rounded-0 text-muted bg-light" name="path-0-weight" value="100">
+              <button type="button" class="input-group-text btn btn-light border-start" onclick="remove_path(this)"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body pb-1 pt-1">
+          <div class="bg-light rounded">
+          <div class="p-2 small text-muted">Landing pages</div>
+            <ul class="list-unstyled p-0 m-0 landers_block" block="path-0">
+            </ul> 
+            <button type="button" class="btn btn-primary m-1 btn-sm pt-0 pb-0" onclick="add_lander(this)">Add lander</button>
+          </div>
+          <div class="bg-light mt-4 rounded ">
+            <div class="p-2 small text-muted">Offers</div>
+              <ul class="list-unstyled p-0 m-0 offers_block" block="path-0">
+              </ul>
+              <button type="button" class="btn btn-primary m-1 btn-sm pt-0 pb-0" onclick="add_offer(this)">Add offer</button>
+            </div>
+        </div> 
+      </li>
+    </ul>
+    <div class="row">
+      <div class="col-sm">
+      <button type="button" class="btn btn-primary btn-sm pt-0 pb-0" onclick="add_path(this)">Add path</button>
+
+    </div>
+  </div>
+  <!-- </div> -->
+  
+</div>
+
+<div class="col-lg-2"></div>
+</div>
+
+</form>
+</section>
+{% endblock %}
+{% block scripts %}
+<!-- <script>
+  // var landerslist
+  // var offerslist
+  // const landerslist = {{landers | tojson}};
+  // const offerslist = {{offers | tojson}};
+  // const traffic_sources = {{traffic_sources | tojson}};
+  window.addEventListener("DOMContentLoaded", function()  {
+    $.each(traffic_sources, function (key, entry) {
+      $("#traffic_source_select").append($('<option></option>').attr('value', entry.value).text(entry.name));
+      })
+    
+  });
+  // window.addEventListener("DOMContentLoaded", function()  {
+  //     $.getJSON("/api/landers", function(data) {
+  //       landerslist = data
+  //       console.log("landers list: ", landerslist)
+  //     });
+  //     setTimeout(() => {
+        
+  //       $.getJSON("/api/offers", function(data) {
+  //         offerslist = data
+  //         console.log("offers list: ", offerslist)
+  //       })
+  //     }, 1000);
+      
+  //   });
+
+ 
+  var path_counter = 1;
+  
+  var lander_counterZ = 0;
+  function add_lander(self) {
+    var pathblockname = $(self.previousSibling.previousSibling).attr("block");
+    
+    var nextlander = '<li class="row mb-6  border border-1 border-primary rounded m-1" id="">\
+            <div class="col-sm p-0">\
+              <select id="' + pathblockname + '-lander-' + lander_counterZ + '" name="' + pathblockname + '-lander-' + lander_counterZ + '" class="selectlanderfield form-select form-select-sm border-0" placeholder="Recipients username">\
+              <option selected>Select Lander</option>\
+              </select>\
+            </div>\
+            <div class="col-sm-3 p-0 border-0">\
+              <div class="input-group input-group-sm col-sm-12 border-0">\
+                <input id="' + pathblockname + '-lander_weight-' + lander_counterZ + '" type="text" class="form-control border-0 border-start rounded-0 " name="' + pathblockname + '-lander_weight-' + lander_counterZ + '" value="100">\
+                <button type="button" class="input-group-text btn btn-light border-start" onclick="remove_element(this)"><i class="bi bi-trash"></i></button>\
+              </div>\
+            </div>\
+          </li>'
+         
+    self.previousSibling.previousSibling.insertAdjacentHTML('beforeend', nextlander)
+    console.log('#' + pathblockname + '-lander-' + lander_counterZ)
+    $.each(landerslist, function (key, entry) {
+      $('#' + pathblockname + '-lander-' + lander_counterZ).append($('<option></option>').attr('value', entry.value).text(entry.name));
+      })
+    lander_counterZ ++   
+  }
+  function remove_element(self) {
+    self.parentNode.parentNode.parentNode.remove()
+  };
+  function remove_path(self) {
+    self.parentNode.parentNode.parentNode.parentNode.remove()
+  };
+
+  var offer_counter = 0;  
+  function add_offer(self) {
+    var pathblockname = $(self.previousSibling.previousSibling).attr("block");
+    
+    var nextoffer = '<li class="row mb-6  border border-1 border-primary rounded m-1" id="">\
+            <div class="col-sm p-0">\
+              <select id="' + pathblockname + '-offer-' + offer_counter + '" name="' + pathblockname + '-offer-' + offer_counter + '" class="selectlanderfield form-select form-select-sm border-0" placeholder="Recipients username">\
+              <option selected>Select offer</option>\
+              </select>\
+            </div>\
+            <div class="col-sm-3 p-0 border-0">\
+              <div class="input-group input-group-sm col-sm-12 border-0">\
+                <input id="' + pathblockname + '-offer_weight-' + offer_counter + '" type="text" class="form-control border-0 border-start rounded-0 " name="' + pathblockname + '-offer_weight-' + offer_counter + '" value="100">\
+                <button type="button" class="input-group-text btn btn-light border-start" onclick="remove_element(this)"><i class="bi bi-trash"></i></button>\
+              </div>\
+            </div>\
+          </li>'
+          
+    self.previousSibling.previousSibling.insertAdjacentHTML('beforeend', nextoffer)
+    console.log('#' + pathblockname + '-offer-' + offer_counter)
+    $.each(offerslist, function (key, entry) {
+      $('#' + pathblockname + '-offer-' + offer_counter).append($('<option></option>').attr('value', entry.value).text(entry.name));
+      })
+    offer_counter ++
+  }
+  
+
+// new path
+
+function add_path(self) {
+  var path_name_counter = path_counter +1
+  var newpath = '<li class="card mb-2">\
+        <div class="card-header row justify-content-between p-0">\
+          <div class="col-lg-6">\
+          <input class="form-control form-control-sm border-0 border-start rounded-0 text-muted bg-light" name="path-' + path_counter + '-name" value="Path ' + path_name_counter + '">\
+          </input>\
+        </div>\
+          <div class="col-lg-3">\
+            <div class="input-group input-group-sm border-0">\
+              <input type="text" class="form-control border-0 rounded-0 text-muted bg-light" name="path-' + path_counter + '-weight" value="100">\
+              <button type="button" class="input-group-text btn btn-light border-start" onclick="remove_path(this)"><i class="bi bi-trash"></i></button>\
+            </div>\
+          </div>\
+        </div>\
+        <div class="card-body pb-1 pt-1">\
+          <div class="bg-light rounded">\
+          <div class="p-2 small text-muted">Landing pages</div>\
+            <ul class="list-unstyled p-0 m-0 landers_block" block="path-' + path_counter + '">\
+            </ul> \
+            <button type="button" class="btn btn-primary m-1 btn-sm pt-0 pb-0" onclick="add_lander(this)">Add lander</button>\
+          </div>\
+          <div class="bg-light mt-4 rounded ">\
+            <div class="p-2 small text-muted">Offers</div>\
+              <ul class="list-unstyled p-0 m-0 offers_block" block="path-' + path_counter + '">\
+              </ul>\
+              <button type="button" class="btn btn-primary m-1 btn-sm pt-0 pb-0" onclick="add_offer(this)">Add offer</button>\
+            </div>\
+        </div> \
+      </li>'
+  path_counter ++  
+  console.log(document.getElementById("pathslist"))
+  document.getElementById("pathslist").insertAdjacentHTML('beforeend', newpath)
+};
+</script> -->
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped table-success table-hover table-sm">
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>Campaign link</th>
+        <th>Clicks</th>
+        <th>Offer clicks</th>
+        <th>Cost</th>
+        <th>Conversions</th>
+        <th>Revenue</th>
+        <th>CTR</th>
+        <th>Profit</th>
+        <th>CR</th>
+        <th>ROI</th>
+        <th>EPV</th>
+        <th>PPC</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {% for user in data %}
+      <tr>
+        <td>{{ user.unique_click_id }}</td>
+        <td>{{ user.click_camp_name }}</td>
+        <td>{{ user.click_lander }}</td>
+        <td>{{ user.click_offer }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    {% endfor %} -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Campaign</th>
+        <th>Campaign link</th>
+        <th>Clicks</th>
+        <th>Offer clicks</th>
+        <th>Cost</th>
+        <th>Conversions</th>
+        <th>Revenue</th>
+        <th>CTR</th>
+        <th>Profit</th>
+        <th>CR</th>
+        <th>ROI</th>
+        <th>EPV</th>
+        <th>PPC</th>
+        
+      </tr>
+   
+    </tfoot>
+  </table>
+  <div id="test1">zzzzzz</div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable(
+        {
+        ajax: '/api/campaign',
+        columns: [
+          {data: "camp_name"},
+          {data: 'camp_link', searchable: false},
+          {data: 'lander_clicks_total', orderable: false, searchable: false},
+          {data: 'offer_clicks_total', orderable: false, searchable: false},
+          {data: 'cost', orderable: false, searchable: false},
+          {data: 'click_converted_total', orderable: false, searchable: false},
+          {data: 'revenue', orderable: false, searchable: false},
+          {data: 'ctr', orderable: false, searchable: false},
+          {data: 'profit', orderable: false, searchable: false},
+          {data: 'cr', orderable: false, searchable: false},
+          {data: 'roi', orderable: false, searchable: false},
+          {data: 'epv', orderable: false, searchable: false},
+          {data: 'ppc', orderable: false, searchable: false}
+        ],
+        buttons: ["copy", "csv", "excel", "pdf", "print"]
+      }
+      ).buttons().container().insertBefore('#test1_filter');
+    });
+    
+  </script>
+{% endblock %}
